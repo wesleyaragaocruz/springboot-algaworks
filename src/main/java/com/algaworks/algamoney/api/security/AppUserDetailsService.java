@@ -19,24 +19,27 @@ import org.springframework.stereotype.Service;
  *
  * @author wesley
  */
-//@Service
-public class AppUserDetailsService {
-//        implements UserDetailsService {
+@Service
+public class AppUserDetailsService implements UserDetailsService {
 
-//    @Autowired
-//    private UsuarioRepository usuarioRepository;
-//
-//    @Override
-//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-//        Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
-//        Usuario usuario = usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
-//        return new User(email, usuario.getSenha(), getPermissoes(usuario));
-//    }
-//
-//    private Collection<? extends GrantedAuthority> getPermissoes(Usuario usuario) {
-//        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-//        usuario.getPermissoes().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getDescricao().toUpperCase())));
-//        return authorities;
-//    }
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(email);
+        Usuario usuario = usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
+        return new User(email, prefixEncodeWithPassword(usuario.getSenha()), getPermissoes(usuario));
+    }
+
+    private Collection<? extends GrantedAuthority> getPermissoes(Usuario usuario) {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        usuario.getPermissoes().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getDescricao().toUpperCase())));
+        return authorities;
+    }
+
+    private String prefixEncodeWithPassword(String password) {
+        return "{bcrypt}".concat(password);
+    }
 
 }
