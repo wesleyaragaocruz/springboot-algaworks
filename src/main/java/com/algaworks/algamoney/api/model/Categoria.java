@@ -1,5 +1,7 @@
 package com.algaworks.algamoney.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +17,10 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "tb_cat_categoria")
-@SuppressWarnings("SerializableClass")
-public class Categoria {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Categoria implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

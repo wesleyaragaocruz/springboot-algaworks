@@ -1,6 +1,7 @@
 package com.algaworks.algamoney.api.model;
 
 import com.algaworks.algamoney.api.enums.TipoLancamento;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "tb_lcm_lancamento")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Lancamento implements Serializable {
 
     private static final long serialVersionUID = 1L;

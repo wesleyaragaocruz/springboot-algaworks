@@ -1,5 +1,6 @@
 package com.algaworks.algamoney.api.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -8,7 +9,9 @@ import javax.persistence.Embeddable;
  * @author wesley
  */
 @Embeddable
-public class Endereco {
+public class Endereco implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "pes_ds_logradouro")
     private String logradouro;

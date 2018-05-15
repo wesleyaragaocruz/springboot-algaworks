@@ -1,5 +1,6 @@
 package com.algaworks.algamoney.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -18,7 +19,10 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "tb_usr_usuario")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Usuario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "usr_id_usuario")
