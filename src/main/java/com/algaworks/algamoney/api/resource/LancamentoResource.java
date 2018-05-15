@@ -3,6 +3,7 @@ package com.algaworks.algamoney.api.resource;
 import com.algaworks.algamoney.api.event.RecursoCriadoEvent;
 import com.algaworks.algamoney.api.filtro.LancamentoFiltro;
 import com.algaworks.algamoney.api.model.Lancamento;
+import com.algaworks.algamoney.api.projection.ResumoLancamento;
 import com.algaworks.algamoney.api.service.LancamentoService;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
@@ -43,10 +44,16 @@ public class LancamentoResource {
         return lancamentoService.listar(filtro);
     }
 
-    @GetMapping("/paginacao")
+    @GetMapping(params = "paginacao")
     @PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
     public Page<Lancamento> listar(LancamentoFiltro filtro, Pageable pageable) {
         return lancamentoService.listar(filtro, pageable);
+    }
+
+    @GetMapping(params = "resumo")
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+    public Page<ResumoLancamento> resumir(LancamentoFiltro filtro, Pageable pageable) {
+        return lancamentoService.resumir(filtro, pageable);
     }
 
     @GetMapping("/{id}")

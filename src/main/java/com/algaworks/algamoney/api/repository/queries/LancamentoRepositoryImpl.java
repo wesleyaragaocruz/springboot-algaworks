@@ -2,6 +2,7 @@ package com.algaworks.algamoney.api.repository.queries;
 
 import com.algaworks.algamoney.api.filtro.LancamentoFiltro;
 import com.algaworks.algamoney.api.model.Lancamento;
+import com.algaworks.algamoney.api.projection.ResumoLancamento;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,25 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
         cq.where(getPredicates(root, filtro, cb).toArray(new Predicate[0]));
 
         TypedQuery<Lancamento> query = manager.createQuery(cq);
+        query.setMaxResults(pageable.getPageSize());
+        query.setFirstResult(pageable.getPageSize() * pageable.getPageNumber());
+
+        return new PageImpl<>(query.getResultList(), pageable, totalRegistros(filtro));
+    }
+
+    @Override
+    public Page<ResumoLancamento> resumir(LancamentoFiltro filtro, Pageable pageable) {
+        CriteriaBuilder cb = manager.getCriteriaBuilder();
+        CriteriaQuery<ResumoLancamento> cq = cb.createQuery(ResumoLancamento.class);
+        Root<Lancamento> root = cq.from(Lancamento.class);
+
+        cq.select(cb.construct(ResumoLancamento.class, root.get("id"), root.get("descricao"),
+                root.get("dataVencimento"), root.get("dataPagamento"), root.get("valor"),
+                root.get("tipoLancamento"), root.get("categoria").get("descricao"), root.get("pessoa").get("nome")));
+
+        cq.where(getPredicates(root, filtro, cb).toArray(new Predicate[0]));
+
+        TypedQuery<ResumoLancamento> query = manager.createQuery(cq);
         query.setMaxResults(pageable.getPageSize());
         query.setFirstResult(pageable.getPageSize() * pageable.getPageNumber());
 

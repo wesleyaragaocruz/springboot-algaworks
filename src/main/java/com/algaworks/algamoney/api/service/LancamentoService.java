@@ -3,6 +3,7 @@ package com.algaworks.algamoney.api.service;
 import com.algaworks.algamoney.api.filtro.LancamentoFiltro;
 import com.algaworks.algamoney.api.model.Lancamento;
 import com.algaworks.algamoney.api.model.Pessoa;
+import com.algaworks.algamoney.api.projection.ResumoLancamento;
 import com.algaworks.algamoney.api.repository.LancamentoRepository;
 import java.util.List;
 import java.util.Optional;
@@ -65,4 +66,7 @@ public class LancamentoService {
         return lancamentoRepository.listar(filtro, pageable);
     }
 
+    public Page<ResumoLancamento> resumir(LancamentoFiltro filtro, Pageable pageable) {
+        return lancamentoRepository.resumir(filtro, pageable);
+    }
 }

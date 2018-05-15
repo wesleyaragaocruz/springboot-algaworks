@@ -92,6 +92,12 @@
             <version>1.0.9.RELEASE</version>
         </dependency>
         
+        <!-- Configurações do projeto com Spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
