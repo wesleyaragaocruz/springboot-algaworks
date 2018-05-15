@@ -2,6 +2,8 @@
  * Author:  wesley
  * Created: 09/05/2018
  */
+DROP TABLE IF EXISTS public.tb_pes_pessoa;
+
 CREATE TABLE public.tb_pes_pessoa (
 	pes_id_pessoa bigserial NOT NULL,
 	pes_ds_nome character varying(50) NOT NULL,
@@ -16,7 +18,7 @@ CREATE TABLE public.tb_pes_pessoa (
         CONSTRAINT pk_pes PRIMARY KEY (pes_id_pessoa)
 ) WITH (OIDS = FALSE);
 
-ALTER TABLE public.tb_pes_pessoa OWNER TO algaworks;
+/*ALTER TABLE public.tb_pes_pessoa OWNER TO algaworks;*/
 
 INSERT INTO public.tb_pes_pessoa (pes_ds_nome, pes_ds_logradouro, pes_ds_numero, pes_ds_complemento, pes_ds_bairro, pes_ds_cep, pes_ds_cidade, pes_ds_estado, pes_st_ativo) values ('João Silva', 'Rua do Abacaxi', '10', null, 'Brasil', '38.400-12', 'Uberlândia', 'MG', true);
 INSERT INTO public.tb_pes_pessoa (pes_ds_nome, pes_ds_logradouro, pes_ds_numero, pes_ds_complemento, pes_ds_bairro, pes_ds_cep, pes_ds_cidade, pes_ds_estado, pes_st_ativo) values ('Maria Rita', 'Rua do Sabiá', '110', 'Apto 101', 'Colina', '11.400-12', 'Ribeirão Preto', 'SP', true);

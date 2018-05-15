@@ -6,6 +6,7 @@
  * Author:  wesley
  * Created: 12/05/2018
  */
+DROP TABLE IF EXISTS public.tb_usr_usuario;
 CREATE TABLE public.tb_usr_usuario (
 	usr_id_usuario bigserial NOT NULL,
 	usr_no_usuario character varying(50) NOT NULL,
@@ -13,15 +14,17 @@ CREATE TABLE public.tb_usr_usuario (
 	usr_pw_senha character varying(150) NOT NULL,
         CONSTRAINT pk_usr PRIMARY KEY (usr_id_usuario)
 );
-ALTER TABLE public.tb_usr_usuario OWNER TO algaworks;
+/*ALTER TABLE public.tb_usr_usuario OWNER TO algaworks;*/
 
+DROP TABLE IF EXISTS public.tb_prm_permissao;
 CREATE TABLE public.tb_prm_permissao (
 	prm_id_permissao bigserial NOT NULL,
 	prm_ds_permissao character varying(50) NOT NULL,
         CONSTRAINT pk_prm PRIMARY KEY (prm_id_permissao)
 );
-ALTER TABLE public.tb_prm_permissao OWNER TO algaworks;
+/*ALTER TABLE public.tb_prm_permissao OWNER TO algaworks;*/
 
+DROP TABLE IF EXISTS public.tb_usr_prm;
 CREATE TABLE public.tb_usr_prm (
     usr_id_usuario bigint NOT NULL,
     prm_id_permissao bigint NOT NULL,
@@ -31,7 +34,7 @@ CREATE TABLE public.tb_usr_prm (
     CONSTRAINT fk_prm_usr FOREIGN KEY (prm_id_permissao)
       REFERENCES public.tb_prm_permissao (prm_id_permissao) MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION
 );
-ALTER TABLE public.tb_usr_prm OWNER TO algaworks;
+/*ALTER TABLE public.tb_usr_prm OWNER TO algaworks;*/
 
 INSERT INTO public.tb_usr_usuario (usr_id_usuario, usr_no_usuario, usr_ds_email, usr_pw_senha) values (1, 'Administrador', 'admin@algamoney.com', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.');
 INSERT INTO public.tb_usr_usuario (usr_id_usuario, usr_no_usuario, usr_ds_email, usr_pw_senha) values (2, 'Maria Silva', 'maria@algamoney.com', '$2a$10$Zc3w6HyuPOPXamaMhh.PQOXvDnEsadztbfi6/RyZWJDzimE8WQjaq');
