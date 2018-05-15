@@ -3,6 +3,7 @@
  * Created: 10/05/2018
  */
 
+DROP TABLE IF EXISTS public.tb_lcm_lancamento;
 CREATE TABLE public.tb_lcm_lancamento (
 	lcm_id_lancamento bigserial NOT NULL,
 	lcm_ds_lancamento character varying(50) NOT NULL,

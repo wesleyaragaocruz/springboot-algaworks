@@ -4,7 +4,6 @@
  */
 
 DROP TABLE IF EXISTS public.tb_cat_categoria;
-
 CREATE TABLE public.tb_cat_categoria (
    cat_id_categoria serial NOT NULL, 
    cat_ds_categoria character varying(50), 
