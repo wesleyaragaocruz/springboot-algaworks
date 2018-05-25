@@ -3,7 +3,7 @@
  * Created: 09/05/2018
  */
 
-DROP TABLE IF EXISTS public.tb_pes_pessoa;
+-- DROP TABLE IF EXISTS public.tb_pes_pessoa;
 CREATE TABLE public.tb_pes_pessoa (
 	pes_id_pessoa bigserial NOT NULL,
 	pes_ds_nome character varying(50) NOT NULL,

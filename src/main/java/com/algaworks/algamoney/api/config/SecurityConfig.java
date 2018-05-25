@@ -4,6 +4,7 @@ import com.algaworks.algamoney.api.security.AppUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 * A Order deste WebSecurityConfigurerAdapter deve ser > 3, para que o configure(HttpSecurity http) do
 * ResourceServerConfig tenha precedência sobre o configure(HttpSecurity http) do SecurityConfig.
  */
+@Profile("basic-security")
 @Configuration
 @EnableWebSecurity
 @Order(4)

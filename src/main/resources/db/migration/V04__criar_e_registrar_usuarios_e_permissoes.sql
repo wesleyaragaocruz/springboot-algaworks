@@ -6,7 +6,7 @@
  * Author:  wesley
  * Created: 12/05/2018
  */
-DROP TABLE IF EXISTS public.tb_usr_usuario;
+-- DROP TABLE IF EXISTS public.tb_usr_usuario;
 CREATE TABLE public.tb_usr_usuario (
 	usr_id_usuario bigserial NOT NULL,
 	usr_no_usuario character varying(50) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE public.tb_usr_usuario (
 );
 /*ALTER TABLE public.tb_usr_usuario OWNER TO algaworks;*/
 
-DROP TABLE IF EXISTS public.tb_prm_permissao;
+-- DROP TABLE IF EXISTS public.tb_prm_permissao;
 CREATE TABLE public.tb_prm_permissao (
 	prm_id_permissao bigserial NOT NULL,
 	prm_ds_permissao character varying(50) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE public.tb_prm_permissao (
 );
 /*ALTER TABLE public.tb_prm_permissao OWNER TO algaworks;*/
 
-DROP TABLE IF EXISTS public.tb_usr_prm;
+-- DROP TABLE IF EXISTS public.tb_usr_prm;
 CREATE TABLE public.tb_usr_prm (
     usr_id_usuario bigint NOT NULL,
     prm_id_permissao bigint NOT NULL,

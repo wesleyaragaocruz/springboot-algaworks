@@ -1,5 +1,6 @@
 package com.algaworks.algamoney.api.service;
 
+import com.algaworks.algamoney.api.filtro.PessoaFiltro;
 import com.algaworks.algamoney.api.model.Pessoa;
 import com.algaworks.algamoney.api.repository.PessoaRepository;
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -43,6 +46,14 @@ public class PessoaService {
         }
         BeanUtils.copyProperties(pessoa, pessoaSalva, "id");
         return pessoaRepository.save(pessoaSalva);
+    }
+
+    public List<Pessoa> listar(PessoaFiltro filtro) {
+        return pessoaRepository.listar(filtro);
+    }
+
+    public Page<Pessoa> listar(PessoaFiltro filtro, Pageable pageable) {
+        return pessoaRepository.listar(filtro, pageable);
     }
 
 }
